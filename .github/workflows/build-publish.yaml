@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  tag-and-restart:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
