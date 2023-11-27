@@ -28,5 +28,5 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm version $GITHUB_REF_NAME --git-tag-version false
+          npm version $GITHUB_REF_NAME --git-tag-version false --allow-same-version true
           npm publish
