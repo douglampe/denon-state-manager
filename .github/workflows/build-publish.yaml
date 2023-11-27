@@ -1,0 +1,32 @@
+name: Version Tag Push
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  tag-and-restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Build
+        shell: bash
+        run: |
+          yarn
+          yarn build
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm version $GITHUB_REF_NAME --git-tag-version false
+          npm publish
