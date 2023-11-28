@@ -2,7 +2,7 @@ name: Main Push
 
 on:
   push:
-    tags:
+    branches:
       - 'main'
 
 jobs:
