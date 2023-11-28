@@ -1,7 +1,7 @@
-import { ReceiverSettings } from "./ReceiverSettings";
-import { StateValue } from "./StateValue";
+import { ReceiverSettings } from './ReceiverSettings';
+import { StateValue } from './StateValue';
 
 export interface StateUpdate {
-  key: ReceiverSettings,
-  value: StateValue,
+  key: ReceiverSettings;
+  value: StateValue;
 }

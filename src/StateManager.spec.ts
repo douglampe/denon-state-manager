@@ -1,6 +1,6 @@
-import { ReceiverSettings } from "./ReceiverSettings";
-import { ReceiverState } from "./ReceiverState";
-import { StateManager } from "./StateManager";
+import { ReceiverSettings } from './ReceiverSettings';
+import { ReceiverState } from './ReceiverState';
+import { StateManager } from './StateManager';
 
 describe('StateManager', () => {
   describe('handleCommand()', () => {
@@ -9,7 +9,8 @@ describe('StateManager', () => {
       const stateManager = new StateManager({
         mainState,
         zone2State: new ReceiverState(),
-        zone3State: new ReceiverState()});
+        zone3State: new ReceiverState(),
+      });
       stateManager.handleCommand('PWON');
       const updated = mainState.popUpdated();
       expect(updated).toEqual({
@@ -17,7 +18,7 @@ describe('StateManager', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
     });
 
@@ -26,7 +27,8 @@ describe('StateManager', () => {
       const stateManager = new StateManager({
         mainState: new ReceiverState(),
         zone2State,
-        zone3State: new ReceiverState()});
+        zone3State: new ReceiverState(),
+      });
       stateManager.handleCommand('Z2ON');
       const updated = zone2State.popUpdated();
       expect(updated).toEqual({
@@ -34,7 +36,7 @@ describe('StateManager', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
     });
 
@@ -43,7 +45,8 @@ describe('StateManager', () => {
       const stateManager = new StateManager({
         mainState: new ReceiverState(),
         zone2State: new ReceiverState(),
-        zone3State});
+        zone3State,
+      });
       stateManager.handleCommand('Z3ON');
       const updated = zone3State.popUpdated();
       expect(updated).toEqual({
@@ -51,7 +54,7 @@ describe('StateManager', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
     });
   });
@@ -62,17 +65,14 @@ describe('StateManager', () => {
       const stateManager = new StateManager({
         mainState: new ReceiverState(),
         zone2State: new ReceiverState(),
-        zone3State: new ReceiverState()});
+        zone3State: new ReceiverState(),
+      });
       stateManager.handleCommand('PWON');
       stateManager.handleCommand('Z2ON');
       stateManager.handleCommand('Z3ON');
       stateManager.sendUpdates(cb);
 
-      expect(cb.mock.calls).toEqual([
-        ['PWON'],
-        ['Z2ON'],
-        ['Z3ON'],
-      ]);
+      expect(cb.mock.calls).toEqual([['PWON'], ['Z2ON'], ['Z3ON']]);
     });
   });
 });

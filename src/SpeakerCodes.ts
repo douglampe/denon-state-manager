@@ -2,7 +2,7 @@ export class SpeakerCodes {
   public static namesToCodes: Record<string, string> = {
     'Front Left': 'FL',
     'Front Right': 'FR',
-    'Center': 'C',
+    Center: 'C',
     'Subwoofer 1': 'SW',
     'Subwoofer 2': 'SW2',
     'Surround Left': 'SL',

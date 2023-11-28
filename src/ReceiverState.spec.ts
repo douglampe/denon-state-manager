@@ -26,7 +26,7 @@ describe('ReceiverState', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
     });
 
@@ -42,7 +42,7 @@ describe('ReceiverState', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
     });
 
@@ -79,7 +79,7 @@ describe('ReceiverState', () => {
         value: {
           raw: 'ON',
           text: 'ON',
-        }
+        },
       });
       expect(state.isUpdated()).toBeFalsy();
     });

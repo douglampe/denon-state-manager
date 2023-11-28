@@ -344,9 +344,11 @@ describe('MainParser', () => {
   });
 
   describe('SS: Surround Level commands', () => {
-    it.each( Object.keys(SpeakerCodes.codesToNames).map((key) => {
-      return { command: `SSLEV${key} 50`, key: ReceiverSettings.SSLevels, value: { raw: `LEV${key} 50`, key, value: '50', numeric: 50 } };
-    }))('should handle surround level command $command', (data: TestData) => {
+    it.each(
+      Object.keys(SpeakerCodes.codesToNames).map((key) => {
+        return { command: `SSLEV${key} 50`, key: ReceiverSettings.SSLevels, value: { raw: `LEV${key} 50`, key, value: '50', numeric: 50 } };
+      }),
+    )('should handle surround level command $command', (data: TestData) => {
       runTestCase(data);
     });
 

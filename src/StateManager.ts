@@ -1,7 +1,7 @@
-import { MainParser } from "./MainParser";
-import { MessageFormatter } from "./MessageFormatter";
-import { ReceiverState } from "./ReceiverState";
-import { ZoneParser } from "./ZoneParser";
+import { MainParser } from './MainParser';
+import { MessageFormatter } from './MessageFormatter';
+import { ReceiverState } from './ReceiverState';
+import { ZoneParser } from './ZoneParser';
 
 export class StateManager {
   public mainState: ReceiverState;
@@ -12,11 +12,7 @@ export class StateManager {
   private zone2Parser: ZoneParser;
   private zone3Parser: ZoneParser;
 
-  constructor(options: {
-    mainState: ReceiverState,
-    zone2State?: ReceiverState,
-    zone3State?: ReceiverState,
-  }) {
+  constructor(options: { mainState: ReceiverState; zone2State?: ReceiverState; zone3State?: ReceiverState }) {
     this.mainState = options.mainState;
     this.zone2State = options.zone2State;
     this.zone3State = options.zone3State;
@@ -47,7 +43,7 @@ export class StateManager {
       StateManager.sendUpdates(this.zone2State, cb, 2);
     }
 
-    if (this.zone3State){
+    if (this.zone3State) {
       StateManager.sendUpdates(this.zone3State, cb, 3);
     }
   }
