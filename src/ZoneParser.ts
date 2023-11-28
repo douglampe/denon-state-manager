@@ -33,7 +33,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.Power,
-        value: data,
+        value: this.formatResult({ raw: data }),
       };
     }
     if (data.startsWith('CV')) {
@@ -44,7 +44,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.ChannelVolume,
-        value: JSON.stringify({ key, value }),
+        value: this.formatResult({ raw: suffix, key, value }),
       };
     }
     if (data.startsWith('MU')) {
@@ -52,7 +52,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.Mute,
-        value: suffix,
+        value: this.formatResult({ raw: suffix }),
       };
     }
     if (data.startsWith('CS')) {
@@ -60,7 +60,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.ChannelSetting,
-        value: suffix,
+        value: this.formatResult({ raw: suffix }),
       };
     }
     if (data.startsWith('HPF')) {
@@ -68,7 +68,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.HPF,
-        value: suffix,
+        value: this.formatResult({ raw: suffix }),
       };
     }
     if (data.startsWith('QUICK')) {
@@ -76,7 +76,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.QuickSelect,
-        value: suffix,
+        value: this.formatResult({ raw: suffix }),
       };
     }
     const volume = parseInt(data);
@@ -84,13 +84,13 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.Volume,
-        value: volume.toString(),
+        value: this.formatResult({ raw: data, numeric: volume }),
       };
     }
     return {
       handled: true,
       key: ReceiverSettings.Source,
-      value: data,
+      value: this.formatResult({ raw: data }),
     };
   }
 }

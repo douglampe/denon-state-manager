@@ -38,7 +38,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.ChannelVolume,
-          value: JSON.stringify({ key, value }),
+          value: { raw: data, key, value },
         };
       }
       return {
@@ -52,7 +52,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.Volume,
-          value: volume.toString(),
+          value: { raw: data, numeric: volume },
           zone: 1,
         };
       }
@@ -69,7 +69,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.Parameters,
-          value: JSON.stringify({ key, value }),
+          value: { raw: data, key, value },
         };
       }
       return {
@@ -85,7 +85,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.SSLevels,
-          value: JSON.stringify({ key, value }),
+          value: { raw: data, key, value },
         };
       }
       if (data.startsWith('SPC') && data !== 'SPC END') {
@@ -95,7 +95,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.SSSpeakers,
-          value: JSON.stringify({ key, value }),
+          value: { raw: data, key, value },
         };
       }
       return {

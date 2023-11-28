@@ -60,28 +60,46 @@ function parse(command: string): void {
   if (mainZoneParser.handle(command)) {
     const updated = mainZoneState.popUpdated();
     const value = mainZoneState.getUpdated(updated);
-    console.log(`${updated}: ${value}`);
+    console.log(`${updated}: ${value.text}`);
   } else if (zone2Parser.handle(command)) {
     const updated = zone2State.popUpdated();
     const value = zone2State.getUpdated(updated);
-    console.log(`${updated}: ${value}`);
+    console.log(`${updated}: ${value.numeric}`);
   } else if (zone3Parser.handle(command)) {
     const updated = zone3State.popUpdated();
     const value = zone3State.getUpdated(updated);
-    console.log(`${updated}: ${value}`);
+    console.log(`${updated}: ${value.key}/${value.value}`);
   }
 }
 ```
 
-## Sending State Updates
+## Usage
 
 ```TypeScript
-import { MessageFormatter } from 'denon-state-manager';
+import { StateManager, ReceiverState, MessageFormatter } from 'denon-state-manager';
 
-// Get command to turn on main power ('PWON'):
-const powerOnCommand = MessageFormatter.getCommand(ReceiverSettings.MainPower, 'ON')
-console.log(powerOnCommand);
-// Get command to set zone 2 volume to 55 ('Z255'):
-const setZone2VolumeCommand = MessageFormatter.getCommand(ReceiverSettings.Volume, '55', 2);
-console.log(setZone2VolumeCommand);
+// Create an instance. Zone2 and Zone3 states are optional.
+const stateManager = new StateManager({
+  mainState: new ReceiverState(),
+  zone2State: new ReceiverState(),
+  zone3State: new ReceiverState()});
+
+// Send status request commands to the console.
+MessageFormatter.sendStatusRequests((command: string) => console.log(command));
+
+// Handle commands and update state accordingly.
+stateManager.handleCommand('PWON');
+stateManager.handleCommand('Z2ON');
+stateManager.handleCommand('Z3ON');
+
+// Get the latest state value.
+const volume = stateManager.mainState.getState(ReceiverSettings.Volume)?.numeric;
+const power = stateManager.mainState.getState(ReceiverSettings.Power)?.text;
+const channelVolume = stateManager.mainState.getState(ReceiverSettings.ChannelVolume);
+if (channelVolume) {
+  const speakerName = SpeakerCodes.codeToName[channelVolume.key];
+  console.log(`Channel: ${speakerName}, Volume:: ${channelVolume.numeric}`)
+}
+
+stateManager.sendUpdates((command: string) => console.log(command));
 ```

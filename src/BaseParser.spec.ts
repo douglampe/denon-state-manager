@@ -1,6 +1,7 @@
 import { BaseParser } from './BaseParser';
 import { ReceiverSettings } from './ReceiverSettings';
 import { ReceiverState } from './ReceiverState';
+import { StateValue } from './StateValue';
 
 class TestParser extends BaseParser {
   getParsers(key: string) {
@@ -15,7 +16,7 @@ describe('BaseParser', () => {
       expect(result).toEqual({
         handled: true,
         key: ReceiverSettings.MainPower,
-        value: 'ON',
+        value: { raw: 'ON' },
       });
     });
   });
@@ -26,7 +27,7 @@ describe('BaseParser', () => {
       expect(result).toEqual({
         handled: true,
         key: ReceiverSettings.ChannelVolume,
-        value: '50',
+        value: { raw: '50' },
       });
     });
 
@@ -35,7 +36,7 @@ describe('BaseParser', () => {
       expect(result).toEqual({
         handled: true,
         key: ReceiverSettings.ChannelVolume,
-        value: '',
+        value: { raw: '' },
       });
     });
 
@@ -53,7 +54,7 @@ describe('BaseParser', () => {
       expect(result).toEqual({
         handled: true,
         key: ReceiverSettings.MainPower,
-        value: 'ON',
+        value: { raw: 'ON' },
       });
     });
 
@@ -71,7 +72,7 @@ describe('BaseParser', () => {
       expect(result).toEqual({
         handled: true,
         key: ReceiverSettings.Standby,
-        value: 'ON',
+        value: { raw: 'ON' },
       });
     });
 
@@ -132,6 +133,29 @@ describe('BaseParser', () => {
       const parser = jest.spyOn(BaseParser, 'parseLongPrefix');
       testParser.parse('STBYON');
       expect(parser).toHaveBeenCalledWith(ReceiverSettings.Standby, 'BYON', 'BY');
+    });
+  });
+
+  describe('formatResult()', () => {
+    const testParser = new TestParser(new ReceiverState());
+    it('should parse raw value integers', () => {
+      const result: StateValue = { raw: '123', numeric: 123 };
+      testParser.formatResult(result);
+      expect(result).toEqual({
+        raw: '123',
+        numeric: 123,
+      });
+    });
+
+    it('should parse value integers', () => {
+      const result: StateValue = { raw: 'FL 123', key: 'FL', value: '123' };
+      testParser.formatResult(result);
+      expect(result).toEqual({
+        raw: 'FL 123',
+        key: 'FL',
+        value: '123',
+        numeric: 123,
+      });
     });
   });
 

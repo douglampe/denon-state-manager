@@ -5,7 +5,7 @@ describe('ReceiverState', () => {
   describe('isUpdated()', () => {
     it('should return true if updated', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeTruthy();
     });
 
@@ -18,27 +18,39 @@ describe('ReceiverState', () => {
   describe('updateState()', () => {
     it('should update if key does not exist', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeTruthy();
       const update = state.popUpdated();
-      expect(update).toEqual(ReceiverSettings.MainPower);
+      expect(update).toEqual({
+        key: ReceiverSettings.MainPower,
+        value: {
+          raw: 'ON',
+          text: 'ON',
+        }
+      });
     });
 
     it('should update if value is different', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'OFF');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'OFF', text: 'OFF' });
       state.clearUpdated();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeTruthy();
       const update = state.popUpdated();
-      expect(update).toEqual(ReceiverSettings.MainPower);
+      expect(update).toEqual({
+        key: ReceiverSettings.MainPower,
+        value: {
+          raw: 'ON',
+          text: 'ON',
+        }
+      });
     });
 
     it('should do nothing if value is the same', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       state.clearUpdated();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeFalsy();
     });
   });
@@ -46,23 +58,29 @@ describe('ReceiverState', () => {
   describe('getState()', () => {
     it('should retrieve state', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
 
       const updated = state.getState(ReceiverSettings.MainPower);
 
-      expect(updated).toEqual('ON');
+      expect(updated).toEqual({ raw: 'ON', text: 'ON' });
     });
   });
 
   describe('popUpdated()', () => {
     it('should retrieve and remove last updated item', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeTruthy();
 
       const updated = state.popUpdated();
 
-      expect(updated).toEqual(ReceiverSettings.MainPower);
+      expect(updated).toEqual({
+        key: ReceiverSettings.MainPower,
+        value: {
+          raw: 'ON',
+          text: 'ON',
+        }
+      });
       expect(state.isUpdated()).toBeFalsy();
     });
   });
@@ -70,7 +88,7 @@ describe('ReceiverState', () => {
   describe('clearUpdated()', () => {
     it('should empty updated list', () => {
       const state = new ReceiverState();
-      state.updateState(ReceiverSettings.MainPower, 'ON');
+      state.updateState(ReceiverSettings.MainPower, { raw: 'ON', text: 'ON' });
       expect(state.isUpdated()).toBeTruthy();
 
       state.clearUpdated();

@@ -1,5 +1,5 @@
 import { ReceiverSettings } from './ReceiverSettings';
-import { KeyValue } from './KeyValue';
+import { StateValue } from './StateValue';
 
 export class MessageFormatter {
   public static statusRequestCommands = [
@@ -64,17 +64,22 @@ export class MessageFormatter {
     [ReceiverSettings.Standby]: 'STBY',
   };
 
-  public static getCommand(setting: ReceiverSettings, value: string, zone?: number): string | undefined {
-    let processedValue: string;
+  public static getCommand(setting: ReceiverSettings, value: StateValue | undefined, zone?: number): string | undefined {
+    let processedValue: string | undefined;
 
-    switch(setting) {
+    switch (setting) {
       case ReceiverSettings.ChannelVolume:
-        const valueData: KeyValue = JSON.parse(value);
-        processedValue = `${valueData.key} ${valueData.value}`;
+      case ReceiverSettings.SSLevels:
+        processedValue = `${value?.key} ${value?.value}`;
         break;
       default:
-        processedValue = value;
+        processedValue = value?.text ?? value?.numeric?.toString();
     }
+
+    if (!processedValue) {
+      return;
+    }
+
     if (zone) {
       const command = MessageFormatter.zoneCommandMap[setting];
       if (typeof command !== 'undefined') {

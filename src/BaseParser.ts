@@ -1,6 +1,7 @@
 import { ParserResult } from './ParserResult';
 import { ReceiverSettings } from './ReceiverSettings';
 import { ReceiverState } from './ReceiverState';
+import { StateValue } from './StateValue';
 
 export class BaseParser {
   protected prefixMap: Record<string, Array<(data: string) => ParserResult>> = {};
@@ -11,7 +12,9 @@ export class BaseParser {
     return {
       handled: true,
       key,
-      value,
+      value: {
+        raw: value,
+      },
     };
   }
 
@@ -21,7 +24,9 @@ export class BaseParser {
       return {
         handled: true,
         key,
-        value: parts.length > 1 ? parts[1] : '',
+        value: {
+          raw: parts.length > 1 ? parts[1] : '',
+        },
       };
     }
     return {
@@ -34,7 +39,9 @@ export class BaseParser {
       return {
         handled: true,
         key,
-        value: data,
+        value: {
+          raw: data,
+        },
       };
     }
     return {
@@ -42,12 +49,14 @@ export class BaseParser {
     };
   }
 
-  static parseLongPrefix(key: ReceiverSettings, data: string, ending: string) {
+  static parseLongPrefix(key: ReceiverSettings, data: string, ending: string): ParserResult {
     if (data.startsWith(ending)) {
       return {
         handled: true,
         key,
-        value: data.substring(ending.length),
+        value: {
+          raw: data.substring(ending.length),
+        },
       };
     }
     return {
@@ -95,9 +104,12 @@ export class BaseParser {
       const parsers = this.prefixMap[prefix];
       if (parsers !== undefined) {
         for (const parser of parsers) {
-          const parserResult = parser(suffix);
-          if (parserResult.handled) {
-            return parserResult;
+          const result = parser(suffix);
+          if (result.handled) {
+            if (result.value) {
+              this.formatResult(result.value);
+            }
+            return result;
           }
         }
       }
@@ -106,6 +118,24 @@ export class BaseParser {
     return {
       handled: false,
     };
+  }
+
+  public formatResult(value: StateValue) {
+    if (!value.numeric) {
+      const intRaw = parseInt(value.raw);
+      if (!isNaN(intRaw) && intRaw.toString() === value.raw) {
+        value.numeric = intRaw;
+      } else {
+        const intValue = parseInt(value.value!);
+        if (!isNaN(intValue) && intValue.toString() === value.value) {
+          value.numeric = intValue;
+        }
+      }
+    }
+    if (!value.numeric && !value.key) {
+      value.text = value.raw;
+    }
+    return value;
   }
 
   public handle(data: string): boolean {
@@ -118,7 +148,7 @@ export class BaseParser {
     return false;
   }
 
-  protected updateState(key: ReceiverSettings | undefined, value: string): void {
+  protected updateState(key: ReceiverSettings | undefined, value: StateValue): void {
     if (key) {
       this.state.updateState(key, value);
     }

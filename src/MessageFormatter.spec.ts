@@ -1,10 +1,11 @@
 import { MessageFormatter } from './MessageFormatter';
 import { ReceiverSettings } from './ReceiverSettings';
+import { StateValue } from './StateValue';
 
 interface TestData {
-  zone: number;
+  zone?: number;
   key: ReceiverSettings;
-  value: string;
+  value: StateValue;
   command: string;
 }
 
@@ -12,47 +13,49 @@ describe('MessageFormatter', () => {
   describe('getCommand()', () => {
     it.each([
       {
-        zone: 0,
         key: ReceiverSettings.MainPower,
-        value: 'ON',
+        value: { raw: 'ON', text: 'ON' },
         command: 'PWON',
       },
-      { zone: 0, key: ReceiverSettings.Source, value: 'DVD', command: 'SIDVD' },
+      { key: ReceiverSettings.Source, value: { raw: 'DVD', text: 'DVD' }, command: 'SIDVD' },
       {
-        zone: 0,
         key: ReceiverSettings.VideoSelect,
-        value: 'DVD',
+        value: { raw: 'DVD', text: 'DVD' },
         command: 'SVDVD',
       },
-      { zone: 0, key: ReceiverSettings.SD, value: 'AUTO', command: 'SDAUTO' },
+      { key: ReceiverSettings.SD, value: { raw: 'AUTO', text: 'AUTO' }, command: 'SDAUTO' },
       {
-        zone: 0,
         key: ReceiverSettings.DigitalInput,
-        value: 'AUTO',
+        value: { raw: 'AUTO', text: 'AUTO' },
         command: 'DCAUTO',
       },
       {
-        zone: 0,
         key: ReceiverSettings.SurroundMode,
-        value: 'MOVIE',
+        value: { raw: 'MOVIE', text: 'MOVIE' },
         command: 'MSMOVIE',
       },
-      { key: ReceiverSettings.Power, value: 'ON', command: 'ZMON' },
-      { key: ReceiverSettings.Mute, value: 'ON', command: 'MUON' },
-      { key: ReceiverSettings.Volume, value: '50', command: 'MV50' },
-      { key: ReceiverSettings.ChannelVolume, value: '{\"key\":\"C\",\"value\":\"50\"}', command: 'CVC 50' },
-      { zone: 2, key: ReceiverSettings.Source, value: 'DVD', command: 'Z2DVD' },
-      { zone: 2, key: ReceiverSettings.Power, value: 'ON', command: 'Z2ON' },
-      { zone: 2, key: ReceiverSettings.Mute, value: 'ON', command: 'Z2MUON' },
-      { zone: 2, key: ReceiverSettings.Volume, value: '50', command: 'Z250' },
-      { zone: 2, key: ReceiverSettings.ChannelVolume, value: '{\"key\":\"C\",\"value\":\"50\"}', command: 'Z2CVC 50' },
+      { key: ReceiverSettings.Power, value: { raw: 'ON', text: 'ON' }, command: 'ZMON' },
+      { key: ReceiverSettings.Mute, value: { raw: 'ON', text: 'ON' }, command: 'MUON' },
+      { key: ReceiverSettings.Volume, value: { raw: '50', text: '50' }, command: 'MV50' },
+      { key: ReceiverSettings.ChannelVolume, value: { raw: 'C 50', key: 'C', value: '50', numeric: 50 }, command: 'CVC 50' },
+      { zone: 2, key: ReceiverSettings.Source, value: { raw: 'DVD', text: 'DVD' }, command: 'Z2DVD' },
+      { zone: 2, key: ReceiverSettings.Power, value: { raw: 'ON', text: 'ON' }, command: 'Z2ON' },
+      { zone: 2, key: ReceiverSettings.Mute, value: { raw: 'ON', text: 'ON' }, command: 'Z2MUON' },
+      { zone: 2, key: ReceiverSettings.Volume, value: { raw: '50', text: '50' }, command: 'Z250' },
+      { zone: 2, key: ReceiverSettings.ChannelVolume, value: { raw: 'C 50', key: 'C', value: '50' }, command: 'Z2CVC 50' },
     ])('should source command for $command', (data: TestData) => {
       const command = MessageFormatter.getCommand(data.key, data.value, data.zone);
       expect(command).toEqual(data.command);
     });
 
     it('should return undefined if no command found', () => {
-      const command = MessageFormatter.getCommand(ReceiverSettings.DigitalInput, 'OFF', 2);
+      const command = MessageFormatter.getCommand(ReceiverSettings.DigitalInput, { raw: 'OFF', text: 'OFF' }, 2);
+
+      expect(command).toBeUndefined();
+    });
+
+    it('should return undefined if no text or numeric in value', () => {
+      const command = MessageFormatter.getCommand(ReceiverSettings.MainPower, { raw: 'OFF' }, 2);
 
       expect(command).toBeUndefined();
     });
