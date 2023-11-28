@@ -103,25 +103,25 @@ describe('ZoneParser', () => {
           zone: 'Z2',
           command: 'Z2CVFL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FL","volume":"50"}',
+          value: '{"key":"FL","value":"50"}',
         },
         {
           zone: 'Z2',
           command: 'Z2CVFR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FR","volume":"50"}',
+          value: '{"key":"FR","value":"50"}',
         },
         {
           zone: 'Z3',
           command: 'Z3CVFL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FL","volume":"50"}',
+          value: '{"key":"FL","value":"50"}',
         },
         {
           zone: 'Z3',
           command: 'Z3CVFR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FR","volume":"50"}',
+          value: '{"key":"FR","value":"50"}',
         },
       ])('should handle channel volume command $command', (data: TestData) => {
         runTestCase(data);
@@ -130,7 +130,7 @@ describe('ZoneParser', () => {
       it('should return blank if no volume', () => {
         const result = parse('Z2', 'Z2CVFL');
         expect(result.handled).toBeTruthy();
-        expect(result.value).toEqual('{"channel":"FL","volume":""}');
+        expect(result.value).toEqual('{"key":"FL","value":""}');
       });
     });
 

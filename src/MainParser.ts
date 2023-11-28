@@ -33,12 +33,12 @@ export class MainParser extends BaseParser {
     this.addParser('CV', (data: string) => {
       if (data !== 'END') {
         const parts = data.split(' ');
-        const channel = parts[0];
-        const volume = parts.length > 1 ? parts[1] : '';
+        const key = parts[0];
+        const value = parts.length > 1 ? parts[1] : '';
         return {
           handled: true,
           key: ReceiverSettings.ChannelVolume,
-          value: JSON.stringify({ channel, volume }),
+          value: JSON.stringify({ key, value }),
         };
       }
       return {
@@ -80,22 +80,22 @@ export class MainParser extends BaseParser {
     this.addParser('SS', (data: string) => {
       if (data.startsWith('LEV') && data !== 'LEV END') {
         const parts = data.substring(3).split(' ');
-        const channel = parts[0];
-        const level = parts.length > 1 ? parts[1] : '';
+        const key = parts[0];
+        const value = parts.length > 1 ? parts[1] : '';
         return {
           handled: true,
           key: ReceiverSettings.SSLevels,
-          value: JSON.stringify({ channel, level }),
+          value: JSON.stringify({ key, value }),
         };
       }
       if (data.startsWith('SPC') && data !== 'SPC END') {
         const parts = data.substring(3).split(' ');
-        const channel = parts[0];
-        const type = parts.length > 1 ? parts[1] : '';
+        const key = parts[0];
+        const value = parts.length > 1 ? parts[1] : '';
         return {
           handled: true,
           key: ReceiverSettings.SSSpeakers,
-          value: JSON.stringify({ channel, type }),
+          value: JSON.stringify({ key, value }),
         };
       }
       return {

@@ -40,17 +40,19 @@ describe('MessageFormatter', () => {
       { key: ReceiverSettings.Power, value: 'ON', command: 'ZMON' },
       { key: ReceiverSettings.Mute, value: 'ON', command: 'MUON' },
       { key: ReceiverSettings.Volume, value: '50', command: 'MV50' },
+      { key: ReceiverSettings.ChannelVolume, value: '{\"key\":\"C\",\"value\":\"50\"}', command: 'CVC 50' },
       { zone: 2, key: ReceiverSettings.Source, value: 'DVD', command: 'Z2DVD' },
       { zone: 2, key: ReceiverSettings.Power, value: 'ON', command: 'Z2ON' },
       { zone: 2, key: ReceiverSettings.Mute, value: 'ON', command: 'Z2MUON' },
       { zone: 2, key: ReceiverSettings.Volume, value: '50', command: 'Z250' },
+      { zone: 2, key: ReceiverSettings.ChannelVolume, value: '{\"key\":\"C\",\"value\":\"50\"}', command: 'Z2CVC 50' },
     ])('should source command for $command', (data: TestData) => {
       const command = MessageFormatter.getCommand(data.key, data.value, data.zone);
       expect(command).toEqual(data.command);
     });
 
     it('should return undefined if no command found', () => {
-      const command = MessageFormatter.getCommand(ReceiverSettings.ECOMode, 'OFF');
+      const command = MessageFormatter.getCommand(ReceiverSettings.DigitalInput, 'OFF', 2);
 
       expect(command).toBeUndefined();
     });

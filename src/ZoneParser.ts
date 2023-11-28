@@ -39,12 +39,12 @@ export class ZoneParser extends BaseParser {
     if (data.startsWith('CV')) {
       const suffix = data.substring(2);
       const parts = suffix.split(' ');
-      const channel = parts[0];
-      const volume = parts.length > 1 ? parts[1] : '';
+      const key = parts[0];
+      const value = parts.length > 1 ? parts[1] : '';
       return {
         handled: true,
         key: ReceiverSettings.ChannelVolume,
-        value: JSON.stringify({ channel, volume }),
+        value: JSON.stringify({ key, value }),
       };
     }
     if (data.startsWith('MU')) {

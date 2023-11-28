@@ -67,157 +67,157 @@ describe('MainParser', () => {
         {
           command: 'CVFL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FL","volume":"50"}',
+          value: '{"key":"FL","value":"50"}',
         },
         {
           command: 'CVFR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FR","volume":"50"}',
+          value: '{"key":"FR","value":"50"}',
         },
         {
           command: 'CVC 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"C","volume":"50"}',
+          value: '{"key":"C","value":"50"}',
         },
         {
           command: 'CVSW 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SW","volume":"50"}',
+          value: '{"key":"SW","value":"50"}',
         },
         {
           command: 'CVSW2 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SW2","volume":"50"}',
+          value: '{"key":"SW2","value":"50"}',
         },
         {
           command: 'CVSL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SL","volume":"50"}',
+          value: '{"key":"SL","value":"50"}',
         },
         {
           command: 'CVSR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SR","volume":"50"}',
+          value: '{"key":"SR","value":"50"}',
         },
         {
           command: 'CVSBL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SBL","volume":"50"}',
+          value: '{"key":"SBL","value":"50"}',
         },
         {
           command: 'CVSBR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SBR","volume":"50"}',
+          value: '{"key":"SBR","value":"50"}',
         },
         {
           command: 'CVSB 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SB","volume":"50"}',
+          value: '{"key":"SB","value":"50"}',
         },
         {
           command: 'CVFHL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FHL","volume":"50"}',
+          value: '{"key":"FHL","value":"50"}',
         },
         {
           command: 'CVFHR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FHR","volume":"50"}',
+          value: '{"key":"FHR","value":"50"}',
         },
         {
           command: 'CVFWL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FWL","volume":"50"}',
+          value: '{"key":"FWL","value":"50"}',
         },
         {
           command: 'CVFWR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FWR","volume":"50"}',
+          value: '{"key":"FWR","value":"50"}',
         },
         {
           command: 'CVTFL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TFL","volume":"50"}',
+          value: '{"key":"TFL","value":"50"}',
         },
         {
           command: 'CVTFR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TFR","volume":"50"}',
+          value: '{"key":"TFR","value":"50"}',
         },
         {
           command: 'CVTML 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TML","volume":"50"}',
+          value: '{"key":"TML","value":"50"}',
         },
         {
           command: 'CVTMR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TMR","volume":"50"}',
+          value: '{"key":"TMR","value":"50"}',
         },
         {
           command: 'CVTRL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TRL","volume":"50"}',
+          value: '{"key":"TRL","value":"50"}',
         },
         {
           command: 'CVTRR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TRR","volume":"50"}',
+          value: '{"key":"TRR","value":"50"}',
         },
         {
           command: 'CVRHL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"RHL","volume":"50"}',
+          value: '{"key":"RHL","value":"50"}',
         },
         {
           command: 'CVRHR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"RHR","volume":"50"}',
+          value: '{"key":"RHR","value":"50"}',
         },
         {
           command: 'CVFDL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FDL","volume":"50"}',
+          value: '{"key":"FDL","value":"50"}',
         },
         {
           command: 'CVFDR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"FDR","volume":"50"}',
+          value: '{"key":"FDR","value":"50"}',
         },
         {
           command: 'CVSDL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SDL","volume":"50"}',
+          value: '{"key":"SDL","value":"50"}',
         },
         {
           command: 'CVSDR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SDR","volume":"50"}',
+          value: '{"key":"SDR","value":"50"}',
         },
         {
           command: 'CVBDL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"BDL","volume":"50"}',
+          value: '{"key":"BDL","value":"50"}',
         },
         {
           command: 'CVBDR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"BDR","volume":"50"}',
+          value: '{"key":"BDR","value":"50"}',
         },
         {
           command: 'CVSHL 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SHL","volume":"50"}',
+          value: '{"key":"SHL","value":"50"}',
         },
         {
           command: 'CVSHR 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"SHR","volume":"50"}',
+          value: '{"key":"SHR","value":"50"}',
         },
         {
           command: 'CVTS 50',
           key: ReceiverSettings.ChannelVolume,
-          value: '{"channel":"TS","volume":"50"}',
+          value: '{"key":"TS","value":"50"}',
         },
       ])('should handle channel volume command $command', (data: TestData) => {
         runTestCase(data);
@@ -230,7 +230,7 @@ describe('MainParser', () => {
 
       it('should return blank if no volume', () => {
         const result = parse('CVC');
-        expect(result.value).toEqual('{"channel":"C","volume":""}');
+        expect(result.value).toEqual('{"key":"C","value":""}');
       });
     });
 
@@ -498,152 +498,152 @@ describe('MainParser', () => {
       {
         command: 'SSLEVFL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FL","level":"50"}',
+        value: '{"key":"FL","value":"50"}',
       },
       {
         command: 'SSLEVFR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FR","level":"50"}',
+        value: '{"key":"FR","value":"50"}',
       },
       {
         command: 'SSLEVSL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SL","level":"50"}',
+        value: '{"key":"SL","value":"50"}',
       },
       {
         command: 'SSLEVSR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SR","level":"50"}',
+        value: '{"key":"SR","value":"50"}',
       },
       {
         command: 'SSLEVSBL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SBL","level":"50"}',
+        value: '{"key":"SBL","value":"50"}',
       },
       {
         command: 'SSLEVSBR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SBR","level":"50"}',
+        value: '{"key":"SBR","value":"50"}',
       },
       {
         command: 'SSLEVSB 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SB","level":"50"}',
+        value: '{"key":"SB","value":"50"}',
       },
       {
         command: 'SSLEVFHL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FHL","level":"50"}',
+        value: '{"key":"FHL","value":"50"}',
       },
       {
         command: 'SSLEVFHR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FHR","level":"50"}',
+        value: '{"key":"FHR","value":"50"}',
       },
       {
         command: 'SSLEVTFL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TFL","level":"50"}',
+        value: '{"key":"TFL","value":"50"}',
       },
       {
         command: 'SSLEVTFR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TFR","level":"50"}',
+        value: '{"key":"TFR","value":"50"}',
       },
       {
         command: 'SSLEVTML 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TML","level":"50"}',
+        value: '{"key":"TML","value":"50"}',
       },
       {
         command: 'SSLEVTMR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TMR","level":"50"}',
+        value: '{"key":"TMR","value":"50"}',
       },
       {
         command: 'SSLEVFDL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FDL","level":"50"}',
+        value: '{"key":"FDL","value":"50"}',
       },
       {
         command: 'SSLEVFDR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FDR","level":"50"}',
+        value: '{"key":"FDR","value":"50"}',
       },
       {
         command: 'SSLEVSDL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SDL","level":"50"}',
+        value: '{"key":"SDL","value":"50"}',
       },
       {
         command: 'SSLEVSDR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SDR","level":"50"}',
+        value: '{"key":"SDR","value":"50"}',
       },
       {
         command: 'SSLEVFWL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FWL","level":"50"}',
+        value: '{"key":"FWL","value":"50"}',
       },
       {
         command: 'SSLEVFWR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"FWR","level":"50"}',
+        value: '{"key":"FWR","value":"50"}',
       },
       {
         command: 'SSLEVTRL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TRL","level":"50"}',
+        value: '{"key":"TRL","value":"50"}',
       },
       {
         command: 'SSLEVTRR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TRR","level":"50"}',
+        value: '{"key":"TRR","value":"50"}',
       },
       {
         command: 'SSLEVRHL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"RHL","level":"50"}',
+        value: '{"key":"RHL","value":"50"}',
       },
       {
         command: 'SSLEVRHR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"RHR","level":"50"}',
+        value: '{"key":"RHR","value":"50"}',
       },
       {
         command: 'SSLEVBDL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"BDL","level":"50"}',
+        value: '{"key":"BDL","value":"50"}',
       },
       {
         command: 'SSLEVBDR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"BDR","level":"50"}',
+        value: '{"key":"BDR","value":"50"}',
       },
       {
         command: 'SSLEVSHL 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SHL","level":"50"}',
+        value: '{"key":"SHL","value":"50"}',
       },
       {
         command: 'SSLEVSHR 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SHR","level":"50"}',
+        value: '{"key":"SHR","value":"50"}',
       },
       {
         command: 'SSLEVTS 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"TS","level":"50"}',
+        value: '{"key":"TS","value":"50"}',
       },
       {
         command: 'SSLEVSW 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SW","level":"50"}',
+        value: '{"key":"SW","value":"50"}',
       },
       {
         command: 'SSLEVSW2 50',
         key: ReceiverSettings.SSLevels,
-        value: '{"channel":"SW2","level":"50"}',
+        value: '{"key":"SW2","value":"50"}',
       },
     ])('should handle surround level command $command', (data: TestData) => {
       runTestCase(data);
@@ -656,7 +656,7 @@ describe('MainParser', () => {
 
     it('should return blank if no value', () => {
       const result = parse('SSLEVSDL');
-      expect(result.value).toEqual('{"channel":"SDL","level":""}');
+      expect(result.value).toEqual('{"key":"SDL","value":""}');
     });
   });
 
@@ -665,77 +665,77 @@ describe('MainParser', () => {
       {
         command: 'SSSPCFRO SMA',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"FRO","type":"SMA"}',
+        value: '{"key":"FRO","value":"SMA"}',
       },
       {
         command: 'SSSPCCEN SMA',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"CEN","type":"SMA"}',
+        value: '{"key":"CEN","value":"SMA"}',
       },
       {
         command: 'SSSPCSUA SMA',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"SUA","type":"SMA"}',
+        value: '{"key":"SUA","value":"SMA"}',
       },
       {
         command: 'SSSPCSBK 2SP',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"SBK","type":"2SP"}',
+        value: '{"key":"SBK","value":"2SP"}',
       },
       {
         command: 'SSSPCFRH NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"FRH","type":"NON"}',
+        value: '{"key":"FRH","value":"NON"}',
       },
       {
         command: 'SSSPCTFR NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"TFR","type":"NON"}',
+        value: '{"key":"TFR","value":"NON"}',
       },
       {
         command: 'SSSPCTPM NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"TPM","type":"NON"}',
+        value: '{"key":"TPM","value":"NON"}',
       },
       {
         command: 'SSSPCFRD NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"FRD","type":"NON"}',
+        value: '{"key":"FRD","value":"NON"}',
       },
       {
         command: 'SSSPCSUD NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"SUD","type":"NON"}',
+        value: '{"key":"SUD","value":"NON"}',
       },
       {
         command: 'SSSPCTPR NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"TPR","type":"NON"}',
+        value: '{"key":"TPR","value":"NON"}',
       },
       {
         command: 'SSSPCRHE NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"RHE","type":"NON"}',
+        value: '{"key":"RHE","value":"NON"}',
       },
       {
         command: 'SSSPCBKD NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"BKD","type":"NON"}',
+        value: '{"key":"BKD","value":"NON"}',
       },
       {
         command: 'SSSPCSHE NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"SHE","type":"NON"}',
+        value: '{"key":"SHE","value":"NON"}',
       },
       {
         command: 'SSSPCTPS NON',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"TPS","type":"NON"}',
+        value: '{"key":"TPS","value":"NON"}',
       },
       {
         command: 'SSSPCSWF 1SP',
         key: ReceiverSettings.SSSpeakers,
-        value: '{"channel":"SWF","type":"1SP"}',
+        value: '{"key":"SWF","value":"1SP"}',
       },
     ])('should handle surround speaker command $command', (data: TestData) => {
       runTestCase(data);
@@ -743,7 +743,7 @@ describe('MainParser', () => {
 
     it('should return blank if no value', () => {
       const result = parse('SSSPCSWF');
-      expect(result.value).toEqual('{"channel":"SWF","type":""}');
+      expect(result.value).toEqual('{"key":"SWF","value":""}');
     });
   });
 });
