@@ -88,10 +88,22 @@ describe('ZoneParser', () => {
           value: { raw: '50', numeric: 50 },
         },
         {
+          zone: 'Z2',
+          command: 'Z200',
+          key: ReceiverSettings.Volume,
+          value: { raw: '00', numeric: 0 },
+        },
+        {
           zone: 'Z3',
           command: 'Z350',
           key: ReceiverSettings.Volume,
           value: { raw: '50', numeric: 50 },
+        },
+        {
+          zone: 'Z3',
+          command: 'Z300',
+          key: ReceiverSettings.Volume,
+          value: { raw: '00', numeric: 0 },
         },
       ])('should handle Zone command $command', (data: TestData) => {
         runTestCase(data);

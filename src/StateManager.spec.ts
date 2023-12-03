@@ -11,13 +11,13 @@ describe('StateManager', () => {
         zone2State: new ReceiverState(),
         zone3State: new ReceiverState(),
       });
-      stateManager.handleCommand('PWON');
+      stateManager.handleCommand('MV00');
       const updated = mainState.popUpdated();
       expect(updated).toEqual({
-        key: ReceiverSettings.MainPower,
+        key: ReceiverSettings.Volume,
         value: {
-          raw: 'ON',
-          text: 'ON',
+          raw: '00',
+          numeric: 0,
         },
       });
     });
@@ -29,13 +29,13 @@ describe('StateManager', () => {
         zone2State,
         zone3State: new ReceiverState(),
       });
-      stateManager.handleCommand('Z2ON');
+      stateManager.handleCommand('Z200');
       const updated = zone2State.popUpdated();
       expect(updated).toEqual({
-        key: ReceiverSettings.Power,
+        key: ReceiverSettings.Volume,
         value: {
-          raw: 'ON',
-          text: 'ON',
+          raw: '00',
+          numeric: 0,
         },
       });
     });
@@ -47,13 +47,13 @@ describe('StateManager', () => {
         zone2State: new ReceiverState(),
         zone3State,
       });
-      stateManager.handleCommand('Z3ON');
+      stateManager.handleCommand('Z300');
       const updated = zone3State.popUpdated();
       expect(updated).toEqual({
-        key: ReceiverSettings.Power,
+        key: ReceiverSettings.Volume,
         value: {
-          raw: 'ON',
-          text: 'ON',
+          raw: '00',
+          numeric: 0,
         },
       });
     });

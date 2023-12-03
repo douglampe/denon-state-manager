@@ -48,11 +48,11 @@ export class MainParser extends BaseParser {
 
     this.addParser('MV', (data: string) => {
       const volume = parseInt(data);
-      if (!isNaN(volume)) {
+      if (data === '00' || !isNaN(volume)) {
         return {
           handled: true,
           key: ReceiverSettings.Volume,
-          value: { raw: data, numeric: volume },
+          value: { raw: data },
           zone: 1,
         };
       }

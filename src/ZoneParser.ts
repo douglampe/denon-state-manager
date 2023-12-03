@@ -80,11 +80,11 @@ export class ZoneParser extends BaseParser {
       };
     }
     const volume = parseInt(data);
-    if (!isNaN(volume)) {
+    if (!isNaN(volume) || data == '00') {
       return {
         handled: true,
         key: ReceiverSettings.Volume,
-        value: this.formatResult({ raw: data, numeric: volume }),
+        value: this.formatResult({ raw: data }),
       };
     }
     return {
