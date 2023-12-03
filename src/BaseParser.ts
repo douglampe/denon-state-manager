@@ -122,6 +122,10 @@ export class BaseParser {
 
   public formatResult(value: StateValue) {
     if (!value.numeric) {
+      if (value.raw == '00') {
+        value.numeric = 0;
+        return value;
+      }
       const intRaw = parseInt(value.raw);
       if (!isNaN(intRaw) && intRaw.toString() === value.raw) {
         value.numeric = intRaw;
