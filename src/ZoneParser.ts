@@ -84,7 +84,7 @@ export class ZoneParser extends BaseParser {
       return {
         handled: true,
         key: ReceiverSettings.Volume,
-        value: this.formatResult({ raw: data }),
+        value: this.formatResult({ raw: data, decimal: true }),
       };
     }
     return {

@@ -52,7 +52,7 @@ export class MainParser extends BaseParser {
         return {
           handled: true,
           key: ReceiverSettings.Volume,
-          value: { raw: data },
+          value: { raw: data, decimal: true },
           zone: 1,
         };
       }

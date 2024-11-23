@@ -37,8 +37,9 @@ describe('MainParser', () => {
 
     describe('General Main Zone commands', () => {
       it.each([
-        { command: 'MV00', key: ReceiverSettings.Volume, value: { raw: '00', numeric: 0 } },
-        { command: 'MV50', key: ReceiverSettings.Volume, value: { raw: '50', numeric: 50 } },
+        { command: 'MV00', key: ReceiverSettings.Volume, value: { raw: '00', numeric: 0, decimal: true } },
+        { command: 'MV50', key: ReceiverSettings.Volume, value: { raw: '50', numeric: 50, decimal: true } },
+        { command: 'MV505', key: ReceiverSettings.Volume, value: { raw: '505', numeric: 50.5, decimal: true } },
         { command: 'MUON', key: ReceiverSettings.Mute, value: { raw: 'ON', text: 'ON' } },
         { command: 'MUOFF', key: ReceiverSettings.Mute, value: { raw: 'OFF', text: 'OFF' } },
         { command: 'ZMON', key: ReceiverSettings.Power, value: { raw: 'ON', text: 'ON' } },

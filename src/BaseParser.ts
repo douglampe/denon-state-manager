@@ -135,6 +135,9 @@ export class BaseParser {
           value.numeric = intValue;
         }
       }
+      if (value.decimal && value.numeric && value.raw.length === 3) {
+        value.numeric /= 10.0;
+      }
     }
     if (!value.numeric && !value.key) {
       value.text = value.raw;
