@@ -1,5 +1,6 @@
 export * from './BaseParser';
 export * from './CommandMessage';
+export * from './ConfigRequestor';
 export * from './MainParser';
 export * from './MessageFormatter';
 export * from './ParserResult';
