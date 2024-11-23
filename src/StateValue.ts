@@ -5,4 +5,5 @@ export interface StateValue {
   enum?: number;
   key?: string;
   value?: string;
+  decimal?: boolean;
 }

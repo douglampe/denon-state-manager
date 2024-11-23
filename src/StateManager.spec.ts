@@ -18,6 +18,7 @@ describe('StateManager', () => {
         value: {
           raw: '00',
           numeric: 0,
+          decimal: true,
         },
       });
     });
@@ -36,6 +37,7 @@ describe('StateManager', () => {
         value: {
           raw: '00',
           numeric: 0,
+          decimal: true,
         },
       });
     });
@@ -54,6 +56,7 @@ describe('StateManager', () => {
         value: {
           raw: '00',
           numeric: 0,
+          decimal: true,
         },
       });
     });

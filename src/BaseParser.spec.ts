@@ -147,6 +147,16 @@ describe('BaseParser', () => {
       });
     });
 
+    it('should parse raw value decimals', () => {
+      const result: StateValue = { raw: '123', decimal: true };
+      testParser.formatResult(result);
+      expect(result).toEqual({
+        raw: '123',
+        numeric: 12.3,
+        decimal: true,
+      });
+    });
+
     it('should parse value integers', () => {
       const result: StateValue = { raw: 'FL 123', key: 'FL', value: '123' };
       testParser.formatResult(result);

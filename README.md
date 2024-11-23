@@ -43,6 +43,39 @@ console.log(MessageFormatter.sendStatusRequests((command) => { console.log(comma
 
 ```
 
+## Usage
+
+```TypeScript
+import { MessageFormatter, ReceiverSettings, ReceiverState, SpeakerCodes, StateManager } from 'denon-state-manager';
+
+// Create an instance. Zone2 and Zone3 states are optional.
+const stateManager = new StateManager({
+  mainState: new ReceiverState(),
+  zone2State: new ReceiverState(),
+  zone3State: new ReceiverState(),
+});
+
+// Send status request commands to the console.
+MessageFormatter.sendStatusRequests((command: string) => console.log(command));
+
+// Handle commands and update state accordingly.
+stateManager.handleCommand('PWON');
+stateManager.handleCommand('Z2ON');
+stateManager.handleCommand('Z3ON');
+
+// Get the latest state value.
+const volume = stateManager.mainState.getState(ReceiverSettings.Volume)?.numeric;
+const power = stateManager.mainState.getState(ReceiverSettings.Power)?.text;
+const channelVolume = stateManager.mainState.getState(ReceiverSettings.ChannelVolume);
+if (channelVolume) {
+  const speakerName = SpeakerCodes.codeToName[channelVolume.key];
+  console.log(`Channel: ${speakerName}, Volume:: ${channelVolume.numeric}`);
+}
+
+// Send any state changes to the AVR
+stateManager.sendUpdates((command: string) => console.log(command));
+```
+
 ## Parsing Commands
 
 ```TypeScript
@@ -52,9 +85,9 @@ const mainZoneState = new ReceiverState();
 const zone2State = new ReceiverState();
 const zone3State = new ReceiverState();
 
-const mainZoneParser = new MainParser(mainZoneSate);
-const zone2Parser = new Zone2Parer(zone2State, 'Z2');
-const zone3Parser = new Zone3Parser(zone3State, 'Z3');
+const mainZoneParser = new MainParser(mainZoneState);
+const zone2Parser = new ZoneParser(zone2State, 'Z2');
+const zone3Parser = new ZoneParser(zone3State, 'Z3');
 
 function parse(command: string): void {
   if (mainZoneParser.handle(command)) {
@@ -71,35 +104,4 @@ function parse(command: string): void {
     console.log(`${updated}: ${value.key}/${value.value}`);
   }
 }
-```
-
-## Usage
-
-```TypeScript
-import { StateManager, ReceiverState, MessageFormatter } from 'denon-state-manager';
-
-// Create an instance. Zone2 and Zone3 states are optional.
-const stateManager = new StateManager({
-  mainState: new ReceiverState(),
-  zone2State: new ReceiverState(),
-  zone3State: new ReceiverState()});
-
-// Send status request commands to the console.
-MessageFormatter.sendStatusRequests((command: string) => console.log(command));
-
-// Handle commands and update state accordingly.
-stateManager.handleCommand('PWON');
-stateManager.handleCommand('Z2ON');
-stateManager.handleCommand('Z3ON');
-
-// Get the latest state value.
-const volume = stateManager.mainState.getState(ReceiverSettings.Volume)?.numeric;
-const power = stateManager.mainState.getState(ReceiverSettings.Power)?.text;
-const channelVolume = stateManager.mainState.getState(ReceiverSettings.ChannelVolume);
-if (channelVolume) {
-  const speakerName = SpeakerCodes.codeToName[channelVolume.key];
-  console.log(`Channel: ${speakerName}, Volume:: ${channelVolume.numeric}`)
-}
-
-stateManager.sendUpdates((command: string) => console.log(command));
 ```
