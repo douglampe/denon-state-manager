@@ -13,6 +13,11 @@ describe('MessageFormatter', () => {
   describe('getCommand()', () => {
     it.each([
       {
+        key: ReceiverSettings.None,
+        value: { raw: 'MVUP' },
+        command: 'MVUP',
+      },
+      {
         key: ReceiverSettings.MainPower,
         value: { raw: 'ON', text: 'ON' },
         command: 'PWON',
