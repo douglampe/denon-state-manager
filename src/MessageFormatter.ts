@@ -82,7 +82,7 @@ export class MessageFormatter {
       return;
     }
 
-    if (zone) {
+    if ((zone ?? 1) > 1) {
       const command = MessageFormatter.zoneCommandMap[setting];
       if (typeof command !== 'undefined') {
         return `Z${zone}${command}${processedValue}`;

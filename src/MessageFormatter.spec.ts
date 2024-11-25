@@ -43,6 +43,7 @@ describe('MessageFormatter', () => {
       { key: ReceiverSettings.Mute, value: { raw: 'ON', text: 'ON' }, command: 'MUON' },
       { key: ReceiverSettings.Volume, value: { raw: '50', text: '50' }, command: 'MV50' },
       { key: ReceiverSettings.ChannelVolume, value: { raw: 'C 50', key: 'C', value: '50', numeric: 50 }, command: 'CVC 50' },
+      { zone: 1, key: ReceiverSettings.Power, value: { raw: 'ON', text: 'ON' }, command: 'ZMON' },
       { zone: 2, key: ReceiverSettings.Source, value: { raw: 'DVD', text: 'DVD' }, command: 'Z2DVD' },
       { zone: 2, key: ReceiverSettings.Power, value: { raw: 'ON', text: 'ON' }, command: 'Z2ON' },
       { zone: 2, key: ReceiverSettings.Mute, value: { raw: 'ON', text: 'ON' }, command: 'Z2MUON' },
