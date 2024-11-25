@@ -68,6 +68,8 @@ export class MessageFormatter {
     let processedValue: string | undefined;
 
     switch (setting) {
+      case ReceiverSettings.None:
+        return value?.raw;
       case ReceiverSettings.ChannelVolume:
       case ReceiverSettings.SSLevels:
         processedValue = `${value?.key} ${value?.value}`;

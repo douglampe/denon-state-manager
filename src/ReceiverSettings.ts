@@ -1,4 +1,5 @@
 export enum ReceiverSettings {
+  None,
   ChannelSetting,
   ChannelVolume,
   DigitalInput,
