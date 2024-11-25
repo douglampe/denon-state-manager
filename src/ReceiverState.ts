@@ -11,7 +11,16 @@ export class ReceiverState {
   }
 
   updateState(key: ReceiverSettings, value: StateValue): void {
-    if (this.state[key]?.raw !== value.raw) {
+    if (value.key && value.value) {
+      const dictionary = this.state[key]?.dictionary ?? ({} as Record<string, string>);
+
+      if (dictionary[value.key] !== value.value) {
+        dictionary[value.key] = value.value;
+        value.dictionary = dictionary;
+        this.state[key] = value;
+        this.updated.push({ key, value });
+      }
+    } else if (this.state[key]?.raw !== value.raw) {
       this.state[key] = value;
       this.updated.push({ key, value });
     }
