@@ -13,35 +13,54 @@ export class ConfigRequestor {
     return await xml2js.parseStringPromise(response.data);
   }
 
+  public async getConfig() {
+    const zones = await this.listZones();
+    const sources = await this.listSources();
+    const sourceRenames = await this.listSourceRenames();
+
+    const { FriendlyName } = await this.getJsonFromXmlEndpoint(`/ajax/globals/get_config?type=3&_=${Date.now()}`);
+
+    for (const zone of zones) {
+      const zoneSources = sources.find((s: any) => s.zone === zone.zone)?.sources;
+      zone.sources = [];
+      for (const source of zoneSources) {
+        const renamed = sourceRenames.find((r: any) => r.renamed === source.name);
+        zone.sources.push(renamed ?? { index: source.index, original: source.name, renamed: source.name });
+      }
+    }
+
+    return {
+      friendlyName: FriendlyName,
+      zones,
+    };
+  }
+
   public async listZones() {
-    const { listHomeMenu } = await this.getJsonFromXmlEndpoint(`/ajax/home/get_config?type=1&_=${Date.now()}`);
+    const { ZoneRename } = await this.getJsonFromXmlEndpoint(`/ajax/general/get_config?type=6&_=${Date.now()}`);
 
-    const zones = [listHomeMenu.MainZone[0].ZoneName[0]];
-
-    if (listHomeMenu.Zone2) {
-      zones.push(listHomeMenu.Zone2[0].ZoneName[0]);
-    }
-
-    if (listHomeMenu.Zone3) {
-      zones.push(listHomeMenu.Zone3[0].ZoneName[0]);
-    }
-
-    return zones;
+    return ZoneRename.Zone.map((z: any) => {
+      return { zone: z.$.index, display: z.Rename[0] };
+    });
   }
 
   public async listSources() {
     const { SourceList } = await this.getJsonFromXmlEndpoint('/ajax/globals/get_config?type=7');
 
-    const sources = [SourceList.Zone[0].Source.map((i: any) => i.Name[0])];
+    return SourceList.Zone.map((z: any) => {
+      return {
+        zone: z.$.zone,
+        sources: z.Source.map((i: any) => {
+          return { index: i.$.index, name: i.Name[0] };
+        }),
+      };
+    });
+  }
 
-    if (SourceList.Zone.length > 1) {
-      sources.push(SourceList.Zone[1].Source.map((i: any) => i.Name[0]));
-    }
+  public async listSourceRenames() {
+    const sourceRenameData = await this.getJsonFromXmlEndpoint(`/ajax/inputs/get_config?type=3&_=${Date.now()}`);
 
-    if (SourceList.Zone.length > 2) {
-      sources.push(SourceList.Zone[2].Source.map((i: any) => i.Name[0]));
-    }
-
-    return sources;
+    return sourceRenameData.SourceRename.Source.map((s: any) => {
+      return { index: s.$.index, original: s.Default[0], renamed: s.Rename[0] };
+    });
   }
 }
