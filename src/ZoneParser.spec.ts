@@ -100,6 +100,18 @@ describe('ZoneParser', () => {
           value: { raw: '00', numeric: 0, decimal: true },
         },
         {
+          zone: 'Z2',
+          command: 'Z2SLPON',
+          key: ReceiverSettings.Sleep,
+          value: { raw: 'ON', text: 'ON' },
+        },
+        {
+          zone: 'Z2',
+          command: 'Z2SLPOFF',
+          key: ReceiverSettings.Sleep,
+          value: { raw: 'OFF', text: 'OFF' },
+        },
+        {
           zone: 'Z3',
           command: 'Z350',
           key: ReceiverSettings.Volume,
@@ -116,6 +128,18 @@ describe('ZoneParser', () => {
           command: 'Z300',
           key: ReceiverSettings.Volume,
           value: { raw: '00', numeric: 0, decimal: true },
+        },
+        {
+          zone: 'Z3',
+          command: 'Z3SLPON',
+          key: ReceiverSettings.Sleep,
+          value: { raw: 'ON', text: 'ON' },
+        },
+        {
+          zone: 'Z3',
+          command: 'Z3SLPOFF',
+          key: ReceiverSettings.Sleep,
+          value: { raw: 'OFF', text: 'OFF' },
         },
       ])('should handle Zone command $command', (data: TestData) => {
         runTestCase(data);

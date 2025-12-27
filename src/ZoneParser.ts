@@ -79,6 +79,14 @@ export class ZoneParser extends BaseParser {
         value: this.formatResult({ raw: suffix }),
       };
     }
+    if (data.startsWith('SLP')) {
+      const suffix = data.substring(3);
+      return {
+        handled: true,
+        key: ReceiverSettings.Sleep,
+        value: this.formatResult({ raw: suffix }),
+      }
+    }
     const volume = parseInt(data);
     if (!isNaN(volume) || data == '00') {
       return {

@@ -1,6 +1,6 @@
 {
   "name": "denon-state-manager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "State manager for Denon AVR TCP/IP protocol",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
