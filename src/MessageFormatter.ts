@@ -15,6 +15,8 @@ export class MessageFormatter {
     'SV?',
     'SLP?',
     'MS?',
+    'QUICK ?',
+    'STBY?',
     'Z2?',
     'Z2MU?',
     'Z2CS?',
@@ -37,17 +39,22 @@ export class MessageFormatter {
     [ReceiverSettings.MainPower]: 'PW',
     [ReceiverSettings.Volume]: 'MV',
     [ReceiverSettings.ChannelVolume]: 'CV',
+    [ReceiverSettings.MaxVolume]: 'MVMAX ',
     [ReceiverSettings.Mute]: 'MU',
     [ReceiverSettings.Source]: 'SI',
     [ReceiverSettings.Power]: 'ZM',
     [ReceiverSettings.SD]: 'SD',
     [ReceiverSettings.DigitalInput]: 'DC',
     [ReceiverSettings.VideoSelect]: 'SV',
+    [ReceiverSettings.VideoSelectSource]: 'SV',
     [ReceiverSettings.Sleep]: 'SLP',
     [ReceiverSettings.Standby]: 'STBY',
     [ReceiverSettings.ECOMode]: 'ECO',
     [ReceiverSettings.SurroundMode]: 'MS',
     [ReceiverSettings.Parameters]: 'PS',
+    [ReceiverSettings.SSLevels]: 'SSLEV',
+    [ReceiverSettings.SSSpeakers]: 'SSSPC',
+    [ReceiverSettings.QuickSelect]: 'MSQUICK',
   };
 
   public static zoneCommandMap: { [key in ReceiverSettings]?: string } = {
@@ -72,6 +79,8 @@ export class MessageFormatter {
         return value?.raw;
       case ReceiverSettings.ChannelVolume:
       case ReceiverSettings.SSLevels:
+      case ReceiverSettings.SSSpeakers:
+      case ReceiverSettings.Parameters:
         processedValue = `${value?.key} ${value?.value}`;
         break;
       default:
