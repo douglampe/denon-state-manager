@@ -85,7 +85,7 @@ export class ZoneParser extends BaseParser {
         handled: true,
         key: ReceiverSettings.Sleep,
         value: this.formatResult({ raw: suffix }),
-      }
+      };
     }
     const volume = parseInt(data);
     if (!isNaN(volume) || data == '00') {
