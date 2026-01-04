@@ -87,10 +87,42 @@ describe('MessageFormatter', () => {
   });
 
   describe('sendStatusRequests', () => {
-    const cb = jest.fn();
+    it('should call callback for each command', () => {
+      const cb = jest.fn();
 
-    MessageFormatter.sendStatusRequests(cb);
+      MessageFormatter.sendStatusRequests(cb);
 
-    expect(cb.mock.calls).toEqual(MessageFormatter.statusRequestCommands.map((i) => [i]));
+      expect(cb.mock.calls).toEqual(MessageFormatter.statusRequestCommands.map((i) => [i]));
+    });
+  });
+
+  describe('getZoneStatusRequestCommands', () => {
+    it('should return main zone commands', () => {
+      const zoneCommands = MessageFormatter.getZoneStatusRequestCommands(1);
+      expect(zoneCommands).toEqual([
+        'SI?',
+        'PW?',
+        'MV?',
+        'CV?',
+        'MU?',
+        'ZM?',
+        'SR?',
+        'SD?',
+        'DC?',
+        'SV?',
+        'SLP?',
+        'MS?',
+        'QUICK ?',
+        'STBY?',
+        'SSSPC ?',
+        'PSCLV ?',
+        'PSSWL ?',
+        'SSLEV ?',
+      ]);
+    });
+    it('should return zone-specific commands', () => {
+      const zoneCommands = MessageFormatter.getZoneStatusRequestCommands(2);
+      expect(zoneCommands).toEqual(['Z2?', 'Z2MU?', 'Z2CS?', 'Z2CV?', 'Z2HPF?', 'Z2QUICK ?']);
+    });
   });
 });

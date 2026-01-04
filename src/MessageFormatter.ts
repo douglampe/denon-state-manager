@@ -132,8 +132,7 @@ export class MessageFormatter {
         'PSSWL ?',
         'SSLEV ?',
       ];
-    } else 
-    {
+    } else {
       return `Z${zone}?,Z${zone}MU?,Z${zone}CS?,Z${zone}CV?,Z${zone}HPF?,Z${zone}QUICK ?`.split(',');
     }
   }
