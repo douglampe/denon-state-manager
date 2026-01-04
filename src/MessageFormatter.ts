@@ -109,4 +109,32 @@ export class MessageFormatter {
       cb(command);
     }
   }
+
+  public static getZoneStatusRequestCommands(zone: number) {
+    if (zone === 1) {
+      return [
+        'SI?',
+        'PW?',
+        'MV?',
+        'CV?',
+        'MU?',
+        'ZM?',
+        'SR?',
+        'SD?',
+        'DC?',
+        'SV?',
+        'SLP?',
+        'MS?',
+        'QUICK ?',
+        'STBY?',
+        'SSSPC ?',
+        'PSCLV ?',
+        'PSSWL ?',
+        'SSLEV ?',
+      ];
+    } else 
+    {
+      return `Z${zone}?,Z${zone}MU?,Z${zone}CS?,Z${zone}CV?,Z${zone}HPF?,Z${zone}QUICK ?`.split(',');
+    }
+  }
 }
